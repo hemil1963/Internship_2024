@@ -1,0 +1,87 @@
+<mat-card>
+  <mat-card-title>User Registration</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="userRegistration" (ngSubmit)="submitUserData()">
+      <mat-form-field appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" required />
+        @if(userRegistration.get('name')?.hasError('required')){
+        <mat-error>Name is required</mat-error>
+        }@else if (userRegistration.get('name')?.hasError('pattern')) {
+        <mat-error>Name should contain Alphabets Only</mat-error>
+        }@else if(userRegistration.get('name')?.hasError('minlength')){
+        <mat-error>Name must have at least 2 characters</mat-error>
+        }@else if(userRegistration.get('name')?.hasError('maxlength')){
+        <mat-error>Name can not have more than 30 characters</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required type="email" />
+        @if(userRegistration.get('email')?.hasError('required')){
+        <mat-error>Email is required</mat-error>
+        }@else if (userRegistration.get('email')?.hasError('email')) {
+        <mat-error>Please Enter Valid Email</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="passwordHide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="changePasswordVisibility($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="passwordHide"
+        >
+          <mat-icon>{{
+            passwordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        @if (userRegistration.get('password')?.hasError('required')) {
+        <mat-error>Please Enter Password</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm password</mat-label>
+        <input
+          matInput
+          [type]="cPasswordHide ? 'password' : 'text'"
+          formControlName="confirmPassword"
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="changeCPasswordVisibility($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="cPasswordHide"
+        >
+          <mat-icon>{{
+            cPasswordHide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        @if (userRegistration.get('password')?.hasError('required')) {
+        <mat-error>Please Enter Password</mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!userRegistration.valid"
+      >
+        Register
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
