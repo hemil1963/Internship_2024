@@ -1,0 +1,65 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  /* background: #06121c; */
+}
+
+mat-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+mat-card-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; 
+  margin: 20px 0;
+}
+
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button[type="submit"] {
+  width: 100%;
+}
+
+mat-error {
+  color: red;
+  font-size: 12px;
+}
+
+mat-icon {
+  cursor: pointer;
+  color: #999; 
+}
+
+mat-icon:hover {
+  color: #666; 
+}
+
+
+button {
+  width: 100%;
+}
+mat-radio-button {
+  margin-bottom: 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+router-outlet,
+ng-toast {
+  flex: 1;
+}
