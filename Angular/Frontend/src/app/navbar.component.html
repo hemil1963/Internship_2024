@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <span>User Authentication</span>
+  <div class="spacer"></div>
+  <div>
+    @if (isLoggedIn) {
+    <a mat-button routerLink="/home">Home</a>
+    <a mat-button (click)="logOutUser()">Logout</a>
+    }@else {
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/signup">Register</a>
+    }
+  </div>
+</mat-toolbar>
+
